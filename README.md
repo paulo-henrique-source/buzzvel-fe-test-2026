@@ -70,6 +70,31 @@ yarn storybook
 
 Open [localhost:6006](http://localhost:6006). `yarn build-storybook` exports the static documentation to `storybook-static/`.
 
+## Lighthouse results
+
+Audited the production build locally on November 19, 2026, using Lighthouse 13.5.0 and Chrome 157.0.8103.79. Mobile results are the medians of five sequential runs with fresh browser profiles, storage reset and default simulated Slow 4G/4× CPU throttling. Desktop results come from one run with the default desktop preset.
+
+| Profile                  | Performance | Accessibility | Best Practices | SEO |
+| ------------------------ | ----------: | ------------: | -------------: | --: |
+| Mobile (five-run median) |          98 |           100 |            100 | 100 |
+| Desktop (one run)        |         100 |           100 |            100 | 100 |
+
+Mobile median metrics: FCP **1.06s**, LCP **2.40s**, Speed Index **1.06s**, TBT **8.5ms** and CLS **0**. The mobile screenshot shows the actual run with the median LCP; other metrics in that individual report can differ slightly from their five-run medians. Scores may vary with hardware, browser versions and measurement conditions.
+
+<details>
+<summary>Mobile Lighthouse screenshot</summary>
+
+![Lighthouse mobile report showing Performance 98, Accessibility 100, Best Practices 100, SEO 100 and the measured loading metrics.](docs/lighthouse/mobile.png)
+
+</details>
+
+<details>
+<summary>Desktop Lighthouse screenshot</summary>
+
+![Lighthouse desktop report showing Performance 100, Accessibility 100, Best Practices 100, SEO 100 and the measured loading metrics.](docs/lighthouse/desktop.png)
+
+</details>
+
 ## AI assistance and time
 
 OpenAI Codex assisted with implementation, refactoring, tests, documentation and code review. The `performance`, `core-web-vitals` and `vercel-react-best-practices` skills also supported performance analysis, alongside Lighthouse audits and Chrome DevTools. The validation commands above check generated changes through linting, strict types, formatting, builds and browser interactions. Human visual and functional review remains necessary, particularly when comparing the result with Figma.
