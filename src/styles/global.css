@@ -43,7 +43,6 @@
 
 @layer base {
   html {
-    scroll-padding-top: 24px;
     scrollbar-gutter: stable;
   }
   body {
@@ -84,9 +83,6 @@
   }
   main:focus {
     outline: none;
-  }
-  section[id] {
-    scroll-margin-top: 24px;
   }
   html:has(dialog[open]) {
     overflow: hidden;
