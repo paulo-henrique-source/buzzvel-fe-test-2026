@@ -23,15 +23,6 @@ const inputClassName =
 const feedbackClassName = 'form-feedback mt-5 rounded-lg px-4 py-3 text-[14px] leading-[22px]';
 
 const subscribeToHydration = () => () => undefined;
-const desktopMediaQuery = '(min-width: 1024px)';
-
-function subscribeToDesktopLayout(onChange: () => void) {
-  const media = window.matchMedia(desktopMediaQuery);
-  media.addEventListener('change', onChange);
-  return () => media.removeEventListener('change', onChange);
-}
-
-const getDesktopLayout = () => window.matchMedia(desktopMediaQuery).matches;
 
 export function ContactForm() {
   const id = useId();
@@ -39,11 +30,6 @@ export function ContactForm() {
   const isHydrated = useSyncExternalStore(
     subscribeToHydration,
     () => true,
-    () => false,
-  );
-  const isDesktopLayout = useSyncExternalStore(
-    subscribeToDesktopLayout,
-    getDesktopLayout,
     () => false,
   );
   const [errors, setErrors] = useState<ContactErrors>({});
@@ -130,8 +116,7 @@ export function ContactForm() {
             </div>
             <div className="form-field grid gap-2">
               <label htmlFor={`${id}-email`} className="text-[14px] leading-6 font-bold">
-                <span className="lg:hidden">E-mail</span>
-                <span className="hidden lg:inline">Email</span>
+                Email
               </label>
               <input
                 id={`${id}-email`}
@@ -139,7 +124,7 @@ export function ContactForm() {
                 type="email"
                 className={`${inputClassName} min-h-12`}
                 inputMode="email"
-                placeholder={isDesktopLayout ? 'youremail@example.com' : 'seuemail@exemplo.com'}
+                placeholder="youremail@example.com"
                 autoComplete="email"
                 required
                 maxLength={254}
