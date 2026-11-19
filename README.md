@@ -36,7 +36,7 @@ The production server also uses port 3000. No environment variables are required
 - Static sections use Server Components; navigation, course previews and the form isolate the interactive client code. Shared primitives live in `src/components/ui`, composed sections in `src/components/sections`, and local content in `src/data`. Imports use the root alias, for example `@/src/components/ui/container`.
 - Tailwind theme tokens in `src/styles/global.css` centralize colors, typography and shadows. Inter and Plus Jakarta Sans are hosted locally, with small core subsets and extended Unicode fonts loaded on demand. Font licenses are included in `public/fonts`.
 - The hero uses pre-generated AVIF/WebP sources at three sizes with responsive selection and high-priority loading. Other content images use server-generated Next.js image optimization attributes.
-- Native `<dialog>` elements provide modal navigation and course previews, including keyboard dismissal and focus restoration. The drawer closes at the desktop breakpoint. Course previews show their small local dataset immediately, with subtle opening and closing motion that respects reduced-motion preferences.
+- Native `<dialog>` elements provide modal navigation and course previews, including keyboard dismissal and focus restoration. The drawer uses a short slide and backdrop fade, closes immediately at the desktop breakpoint, and releases the page before following section links. Course previews show their small local dataset immediately. Both interactions respect reduced-motion preferences.
 - The page provides semantic landmarks, a skip link, visible focus styles, labelled inputs, error announcements and reduced-motion support.
 
 ## Scope and known limitations
@@ -60,9 +60,9 @@ yarn vitest run --project=storybook
 
 `yarn run check` runs the project's ESLint, TypeScript and Prettier checks; `yarn check` is a separate Yarn Classic command. Playwright starts the production server on port 3106, so run `yarn build` before the end-to-end suite. The suite covers page sections and anchors, desktop/mobile/tablet interactions, form validation and submission, dialog keyboard behavior, axe checks, and overflow/clipping across widths from 320px to 2560px. Storybook's browser tests exercise component stories and their interaction assertions in Chromium.
 
-Regression tests also cover resizing an open mobile menu into the desktop layout, preventing native form submissions without JavaScript, opening local course details while offline, and dismissing course previews with keyboard, backdrop and reduced-motion interactions.
+Regression tests also cover resizing an open mobile menu into the desktop layout, aligning section links in both scroll directions, preventing native form submissions without JavaScript, opening local course details while offline, and dismissing course previews with keyboard, backdrop and reduced-motion interactions.
 
-Validation on November 19, 2026, with Node 22.23.5 and Yarn 1.22.22: quality checks and both builds passed; 38 end-to-end tests passed, with one mobile-menu test intentionally skipped in the desktop project; all 36 Storybook tests passed. A frozen offline installation, quality checks and both builds also passed in a clean temporary copy, without changing dependency versions.
+Validation on November 19, 2026, with Node 22.23.5 and Yarn 1.22.22: quality checks and both builds passed; 44 end-to-end tests passed, with one mobile-menu test intentionally skipped in the desktop project; all 36 Storybook tests passed. A frozen offline installation, quality checks and both builds also passed in a clean temporary copy, without changing dependency versions.
 
 To browse the component documentation:
 
