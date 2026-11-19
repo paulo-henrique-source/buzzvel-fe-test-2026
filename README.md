@@ -2,6 +2,8 @@
 
 An implementation of the Luma Learning landing page for the Buzzvel take-home challenge, based on the [supplied Figma design](https://www.figma.com/design/G0zSf6gyynwzEusOCgm2CM/Buzzvel-FE---Test-2026?node-id=0-1).
 
+**Live demo:** [Luma Learning on Vercel](https://buzzvel-fe-test-2026-gamma.vercel.app/).
+
 ## Setup and development
 
 Use **Node.js 22** (`.nvmrc`) and **Yarn Classic 1.22.22**. From the repository root, with nvm installed:
@@ -42,7 +44,7 @@ The production server also uses port 3000. No environment variables are required
 - Course previews use local sample content where the design does not specify details. Their CTA leads to the contact section; there is no enrollment flow.
 - The contact form validates input and simulates a 600ms submission locally. It does not send email, store messages or contact a server. JavaScript is required, and submission stays disabled until the form is ready.
 - Navigation and design actions resolve to page sections. Log in, Careers, Journal, Terms and Privacy are placeholders for a future product, without dedicated pages or authentication.
-- A backend, CMS, authentication and payment integration are outside the challenge scope. No deployed preview is included in this delivery.
+- A backend, CMS, authentication and payment integration are outside the challenge scope.
 - Automated accessibility checks cover selected page and dialog states. They do not establish complete accessibility compliance; broader browser, assistive technology and visual review remains useful.
 
 ## Verification
@@ -72,26 +74,26 @@ Open [localhost:6006](http://localhost:6006). `yarn build-storybook` exports the
 
 ## Lighthouse results
 
-Audited the production build locally on November 19, 2026, using Lighthouse 13.5.0 and Chrome 157.0.8103.79. Mobile results are the medians of five sequential runs with fresh browser profiles, storage reset and default simulated Slow 4G/4× CPU throttling. Desktop results come from one run with the default desktop preset.
+Audited the [live Vercel deployment](https://buzzvel-fe-test-2026-gamma.vercel.app/) on November 19, 2026, using Lighthouse 13.5.0 and Chrome 157.0.8103.79. Mobile results are the medians of five sequential runs with fresh browser profiles, storage reset and default simulated Slow 4G/4× CPU throttling. Desktop results come from one run with the default desktop preset. All five mobile runs scored 100 in each category below.
 
 | Profile                  | Performance | Accessibility | Best Practices | SEO |
 | ------------------------ | ----------: | ------------: | -------------: | --: |
-| Mobile (five-run median) |          98 |           100 |            100 | 100 |
+| Mobile (five-run median) |         100 |           100 |            100 | 100 |
 | Desktop (one run)        |         100 |           100 |            100 | 100 |
 
-Mobile median metrics: FCP **1.06s**, LCP **2.40s**, Speed Index **1.06s**, TBT **8.5ms** and CLS **0**. The mobile screenshot shows the actual run with the median LCP; other metrics in that individual report can differ slightly from their five-run medians. Scores may vary with hardware, browser versions and measurement conditions.
+Mobile median metrics: FCP **0.99s**, LCP **1.26s**, Speed Index **0.99s**, TBT **7ms** and CLS **0**. The mobile screenshot shows the actual run with the median LCP; other metrics in that individual report can differ slightly from their five-run medians. Scores may vary with hardware, browser versions and measurement conditions.
 
 <details>
-<summary>Mobile Lighthouse screenshot</summary>
+<summary>Mobile Lighthouse screenshot — Vercel deployment</summary>
 
-![Lighthouse mobile report showing Performance 98, Accessibility 100, Best Practices 100, SEO 100 and the measured loading metrics.](docs/lighthouse/mobile.png)
+![Lighthouse report for the Vercel deployment on mobile showing Performance 100, Accessibility 100, Best Practices 100, SEO 100 and the measured loading metrics.](docs/lighthouse/mobile.png)
 
 </details>
 
 <details>
-<summary>Desktop Lighthouse screenshot</summary>
+<summary>Desktop Lighthouse screenshot — Vercel deployment</summary>
 
-![Lighthouse desktop report showing Performance 100, Accessibility 100, Best Practices 100, SEO 100 and the measured loading metrics.](docs/lighthouse/desktop.png)
+![Lighthouse report for the Vercel deployment on desktop showing Performance 100, Accessibility 100, Best Practices 100, SEO 100 and the measured loading metrics.](docs/lighthouse/desktop.png)
 
 </details>
 
