@@ -12,7 +12,7 @@ export function HeroSection() {
       className="hero-section overflow-clip bg-surface py-[60px] lg:py-[100px]"
       aria-labelledby="hero-title"
     >
-      <Container className="hero-grid grid items-center gap-10 [--container-max-width:640px] lg:grid-cols-[1.12fr_1fr] lg:gap-[60px] lg:[--container-max-width:var(--content-max-width)]">
+      <Container className="hero-grid grid items-center gap-10 [--container-max-width:640px] lg:grid-cols-[1.12fr_1fr] lg:gap-[60px] lg:pr-[clamp(0px,calc((var(--content-max-width)-100vw)/2+60px),40px)] lg:[--container-max-width:var(--content-max-width)]">
         <div className="hero-copy min-w-0 lg:self-start">
           <p className={eyebrowClassName}>Learn at your own pace</p>
           <h1

@@ -7,8 +7,8 @@ test('keeps content inside the viewport and clipping ancestors between breakpoin
   await page.evaluate(() => document.fonts.ready);
 
   for (const width of [
-    320, 359, 360, 390, 402, 430, 639, 640, 767, 768, 1023, 1024, 1109, 1110, 1159, 1160, 1199,
-    1200, 1235, 1236, 1279, 1280, 1440, 1920, 2560,
+    320, 359, 360, 390, 402, 430, 639, 640, 767, 768, 1023, 1024, 1109, 1110, 1136, 1159, 1160,
+    1180, 1199, 1200, 1235, 1236, 1239, 1240, 1279, 1280, 1440, 1920, 2560,
   ]) {
     await page.setViewportSize({ width, height: 900 });
     await page.evaluate(
@@ -55,6 +55,9 @@ test('keeps content inside the viewport and clipping ancestors between breakpoin
 
       const rating = document.querySelector('.hero-rating')!.getBoundingClientRect();
       if (rating.left < 0 || rating.right > viewportWidth) issues.push('Rating badge is cut off');
+      const backdrop = document.querySelector('.hero-visual > span')!.getBoundingClientRect();
+      if (backdrop.left < 0 || backdrop.right > viewportWidth)
+        issues.push('Hero backdrop is cut off');
       if (document.documentElement.scrollWidth > viewportWidth + 1)
         issues.push('Horizontal page overflow');
       return issues;
