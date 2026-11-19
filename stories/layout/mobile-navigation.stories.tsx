@@ -46,7 +46,9 @@ export const Open: Story = {
     await userEvent.click(trigger);
     const dialog = await canvas.findByRole('dialog', { name: 'Navigation menu' });
 
-    await expect(dialog).toBeVisible();
+    await waitFor(async () => {
+      await expect(dialog).toBeVisible();
+    });
     await expect(
       within(dialog).getByRole('navigation', { name: 'Mobile navigation' }),
     ).toBeVisible();

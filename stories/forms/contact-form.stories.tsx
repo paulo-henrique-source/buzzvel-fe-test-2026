@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import { expect, userEvent, within } from 'storybook/test';
+import { expect, userEvent, waitFor, within } from 'storybook/test';
 import { ContactForm } from '@/src/components/sections/contact-form';
 
 const meta = {
@@ -77,11 +77,10 @@ export const SuccessfulSubmission: Story = {
       'aria-busy',
       'true',
     );
-    await expect(
-      await canvas.findByText(
-        'Demo complete. Your message was validated successfully; no email was sent.',
-      ),
-    ).toBeVisible();
+    const feedback = await canvas.findByText(
+      'Demo complete. Your message was validated successfully; no email was sent.',
+    );
+    await waitFor(() => expect(feedback).toBeVisible());
     await expect(canvas.getByRole('textbox', { name: 'Full name' })).toHaveValue('');
     await expect(canvas.getByRole('textbox', { name: /E-?mail/i })).toHaveValue('');
     await expect(canvas.getByRole('textbox', { name: 'Your question' })).toHaveValue('');

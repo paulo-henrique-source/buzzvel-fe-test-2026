@@ -147,6 +147,10 @@
     scroll-behavior: smooth;
   }
 
+  .form-feedback--success {
+    animation: form-feedback-enter 200ms ease-out both;
+  }
+
   html:has(.course-dialog[open]) {
     transition: background-color 180ms ease-out;
   }
@@ -154,18 +158,71 @@
     background-color: transparent;
     transition: background-color 160ms ease-in;
   }
+  html:has(.mobile-menu[open]) {
+    transition: background-color 220ms ease-out;
+  }
+  html:has(.mobile-menu[data-state='closing']) {
+    background-color: transparent;
+    transition: background-color 180ms ease-in;
+  }
+
+  .mobile-menu[open] {
+    animation: mobile-menu-enter 220ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .mobile-menu[open]::backdrop {
+    animation: dialog-backdrop-enter 220ms ease-out both;
+  }
+  .mobile-menu[data-state='closing'] {
+    animation: mobile-menu-exit 180ms ease-in both;
+  }
+  .mobile-menu[data-state='closing']::backdrop {
+    animation: dialog-backdrop-exit 180ms ease-in both;
+  }
 
   .course-dialog[open] {
     animation: course-dialog-enter 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
   }
   .course-dialog[open]::backdrop {
-    animation: course-backdrop-enter 180ms ease-out both;
+    animation: dialog-backdrop-enter 180ms ease-out both;
   }
   .course-dialog[data-state='closing'] {
     animation: course-dialog-exit 160ms ease-in both;
   }
   .course-dialog[data-state='closing']::backdrop {
-    animation: course-backdrop-exit 160ms ease-in both;
+    animation: dialog-backdrop-exit 160ms ease-in both;
+  }
+}
+
+@keyframes form-feedback-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes mobile-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes mobile-menu-exit {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 
@@ -191,7 +248,7 @@
   }
 }
 
-@keyframes course-backdrop-enter {
+@keyframes dialog-backdrop-enter {
   from {
     opacity: 0;
   }
@@ -200,7 +257,7 @@
   }
 }
 
-@keyframes course-backdrop-exit {
+@keyframes dialog-backdrop-exit {
   from {
     opacity: 1;
   }
